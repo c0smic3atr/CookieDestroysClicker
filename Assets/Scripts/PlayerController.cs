@@ -8,10 +8,13 @@ public class PlayerController : MonoBehaviour
     public float cookieMoveSpeed;
     private float horizontalInput;
     private float verticalInput;
+
+    private Rigidbody cookieRb;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        cookieRb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -21,8 +24,13 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.up * cookieTurnSpeed * horizontalInput * Time.deltaTime);
 
+        
+    }
+
+    private void FixedUpdate()
+    {
         //Moving
         verticalInput = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.forward * cookieMoveSpeed * verticalInput * Time.deltaTime);
+        cookieRb.AddRelativeForce(Vector3.forward * cookieMoveSpeed * verticalInput);
     }
 }
