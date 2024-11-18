@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody cookieRb;
 
+    public GameObject bullet;
+    public GameObject bulletSpawner;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +27,11 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.up * cookieTurnSpeed * horizontalInput * Time.deltaTime);
 
-        
+        //Shooting
+        if(Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(bullet, bulletSpawner.transform.position, bulletSpawner.transform.rotation);
+        }
     }
 
     private void FixedUpdate()
