@@ -33,7 +33,7 @@ public class AsteroidController : MonoBehaviour
     {
         if(smallerPointer != null)
         {
-            for (int = i = 0; i < numberToSpawn; i++)
+            for (int i=0; i < numberToSpawn; i++)
             {
                 Instantiate(smallerPointer, transform.position, transform.rotation);
 
