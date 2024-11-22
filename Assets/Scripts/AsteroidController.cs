@@ -8,6 +8,9 @@ public class AsteroidController : MonoBehaviour
     private GameManager gm;
     
     public GameObject smallerPointer;
+    public int smallPointerToSpawn;
+
+    public float forceRange;
 
     private void Start()
     {
@@ -20,6 +23,7 @@ public class AsteroidController : MonoBehaviour
         {
             gm.AddScore(pointValue);
             Destroy(collision.gameObject);
+            SpawnSmaller(smallPointerToSpawn);
             Destroy(gameObject);
         }
 
@@ -40,5 +44,12 @@ public class AsteroidController : MonoBehaviour
             }
             
         }
+    }
+
+    public void AddRandomForce()
+    {
+        float randomForceX = Random.Range(-forceRange, forceRange);
+        float randomForceZ = Random.Range(-forceRange, forceRange);
+        Vector3 randomForce = new Vector3(randomForceX, 0, randomForceZ);
     }
 }
