@@ -14,10 +14,13 @@ public class PlayerController : MonoBehaviour
     public GameObject bullet;
     public GameObject bulletSpawner;
 
+    public GameManager gm;
+
     // Start is called before the first frame update
     void Start()
     {
         cookieRb = GetComponent<Rigidbody>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame

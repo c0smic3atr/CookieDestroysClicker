@@ -14,9 +14,11 @@ public class GameManager : MonoBehaviour
     public float safetyRadius;
 
     public int maxLives;
-    public int lives;
+    private int lives;
     public GameObject gameOverDisplay;
     public TextMeshProUGUI lifeDisplay;
+    public Vector3 spawnPoint = Vector3.zero;
+    public GameObject playerPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateLives()
     {
-        lifeDisplay.text = $"lives {lives}";
+        lifeDisplay.text = $"Lives: {lives}";
     }
 
     public void AddScore(int value)
@@ -52,5 +54,34 @@ public class GameManager : MonoBehaviour
     {
         lives--;
         UpdateLives();
+    }
+
+    IEnumerator RespawnPlayer()
+    {
+
+        yield return new WaitForSeconds(1);
+
+        GameObject[] pointers = GameObject.FindGameObjectsWithTag("Enemy");
+
+        bool canSpawn = false;
+
+        while(!canSpawn)
+        {
+            foreach(GameObject pointer in pointers)
+            {
+                if((pointer.transform.position - spawnPoint).magnitude < safetyRadius)
+                {
+                    canSpawn = false;
+                }
+            }
+        }
+
+        Instantiate(playerPrefab, spawnPoint, playerPrefab.transform.rotation);
+    }
+
+    public void PlayerDie()
+    {
+        LoseLives();
+        StartCoroutine(RespawnPlayer());
     }
 }

@@ -34,6 +34,7 @@ public class AsteroidController : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("Player"))
         {
+            gm.PlayerDie();
             Destroy(collision.gameObject);
         }
     }

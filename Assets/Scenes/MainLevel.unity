@@ -148,6 +148,7 @@ MonoBehaviour:
   cookieMoveSpeed: 20
   bullet: {fileID: 1550785537215889892, guid: 8fde657b9bc491c4fadbe7098753e6e3, type: 3}
   bulletSpawner: {fileID: 1839038894}
+  gm: {fileID: 0}
 --- !u!114 &76946898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,9 +911,10 @@ MonoBehaviour:
   offset: 0.1
   safetyRadius: 10
   maxLives: 0
-  lives: 0
   gameOverDisplay: {fileID: 2090041319}
   lifeDisplay: {fileID: 839650654}
+  spawnPoint: {x: 0, y: 0, z: 0}
+  playerPrefab: {fileID: 3595894032326255203, guid: 528fcbb9d9f53114e95733767964494f, type: 3}
 --- !u!4 &1434620235
 Transform:
   m_ObjectHideFlags: 0
